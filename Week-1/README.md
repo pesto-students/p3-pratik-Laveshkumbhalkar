@@ -3,27 +3,26 @@
 Assignment 1
 ---------------
 
-
 The web browser is at the heart of how we experience the internet. Every day, millions visit websites via browsers. Five major browsers — Chrome, Firefox, Internet Explorer, Safari and Opera — account 95% of web traffic.
 
 A major role of a web browser is to accept a web URL via an address bar, fetch resources, and display them on the screen.
 
 Browsers functionality can be classified into four major sections and these include:
 
-> Fetch
-> Process
-> Display
-> Storage
+1. Fetch
+2. Process
+3. Display
+4. Storage
+
 
 A) The main functionality of the browser
 ----------------------------------------
 
-
-> The main task is to collect information from the Internet and make it accessible to users.
-> A web browser can be used to visit any website. When we type a URL into a browser, the web server redirects us to that website.
-> It simplifies Internet surfing because once we arrive at a website, we can quickly check the hyperlinks and access a wealth of information.
-> Internal cache is used by browsers and is saved so that the user can open the same webpage multiple times without losing any data.
-> A web browser can open multiple web pages at the same time. Back, forward, reload, stop reload, home, and other options are available on these web browsers, making them simple and convenient to use.
+1. The main task is to collect information from the Internet and make it accessible to users.
+2. A web browser can be used to visit any website. When we type a URL into a browser, the web server redirects us to that website.
+3. It simplifies Internet surfing because once we arrive at a website, we can quickly check the hyperlinks and access a wealth of information.
+4. Internal cache is used by browsers and is saved so that the user can open the same webpage multiple times without losing any data.
+5. A web browser can open multiple web pages at the same time. Back, forward, reload, stop reload, home, and other options are available on these web browsers, making them simple and convenient to use.
 
 * What happens when we type a URL:
 
@@ -37,9 +36,9 @@ Steps for what happens when we enter a URL :
 
 1. Browser checks cache for DNS entry to find the corresponding IP address of website.
     It looks for following cache. If not found in one, then continues checking to the next until found.
-    > Browser Cache
-    > Operating Systems Cache
-    > Router Cache
+    a) Browser Cache
+    b) Operating Systems Cache
+    c) Router Cache
 
 2.  If not found in cache, ISP’s (Internet Service Provider) DNS server initiates a DNS query to find IP address of     server that hosts the domain name.
 3. The requests are sent using small data packets that contain information content of request and IP address it is destined for.
@@ -53,19 +52,19 @@ Steps for what happens when we enter a URL :
 B) High Level Components of a browser
 -------------------------------------
 
-> The user interface: this includes the address bar, back/forward button, bookmarking menu, etc. Every part of the browser display except the window where you see the requested page.
+1. The user interface: this includes the address bar, back/forward button, bookmarking menu, etc. Every part of the browser display except the window where you see the requested page.
 
-> The browser engine: marshals actions between the UI and the rendering engine.
+2. The browser engine: marshals actions between the UI and the rendering engine.
 
-> The rendering engine : responsible for displaying requested content. For example if the requested content is HTML, the rendering engine parses HTML and CSS, and displays the parsed content on the screen.
+3. The rendering engine : responsible for displaying requested content. For example if the requested content is HTML, the rendering engine parses HTML and CSS, and displays the parsed content on the screen.
 
-> Networking: for network calls such as HTTP requests, using different implementations for different platform behind a platform-independent interface.
+4. Networking: for network calls such as HTTP requests, using different implementations for different platform behind a platform-independent interface.
 
-> UI backend: used for drawing basic widgets like combo boxes and windows. This backend exposes a generic interface that is not platform specific. Underneath it uses operating system user interface methods.
+5. UI backend: used for drawing basic widgets like combo boxes and windows. This backend exposes a generic interface that is not platform specific. Underneath it uses operating system user interface methods.
 
-> JavaScript interpreter: Used to parse and execute JavaScript code.
+6. JavaScript interpreter: Used to parse and execute JavaScript code.
 
-> Data storage: This is a persistence layer. The browser may need to save all sorts of data locally, such as cookies. Browsers also support storage mechanisms such as localStorage, IndexedDB, WebSQL and FileSystem.
+7. Data storage: This is a persistence layer. The browser may need to save all sorts of data locally, such as cookies. Browsers also support storage mechanisms such as localStorage, IndexedDB, WebSQL and FileSystem.
 It is important to note that browsers such as Chrome run multiple instances of the rendering engine: one for each tab. Each tab runs in a separate process.
 
 
@@ -79,8 +78,8 @@ C) Rendering engine and its use
 A rendering engine is software that draws text and images on the screen. The engine draws structured text from a document (often HTML), and formats it properly based on the given style declarations (often given in CSS). 
 Examples of layout engines: Blink, Gecko, EdgeHTML, WebKit.
 
---The main flow--
---------------------
+The main flow
+------------
 The rendering engine will start getting the contents of the requested document from the networking layer. This will usually be done in 8kB chunks.
 
 After that, this is the basic flow of the rendering engine:
@@ -96,12 +95,12 @@ HTML or CSS is a lightweight HTML/CSS parser written in C that allows applicatio
 
 Features include:
 
-> HTML 5 markup parser
-> CSS 3 stylesheet parser
-> OFC/OFF/TTC/TTF font file parser (metadata only)
-> GIF/JPG/PNG image file parser (metadata only)
-> Functions to calculate CSS properties for a given node in a HTML document
-> Functions to extract HTML “runs” consisting of CSS properties, content strings, and image references that can be rendered directly, including the :before and :after content from a stylesheet
+1. HTML 5 markup parser
+2. CSS 3 stylesheet parser
+3. OFC/OFF/TTC/TTF font file parser (metadata only)
+4. GIF/JPG/PNG image file parser (metadata only)
+5. Functions to calculate CSS properties for a given node in a HTML document
+6. Functions to extract HTML “runs” consisting of CSS properties, content strings, and image references that can be rendered directly, including the :before and :after content from a stylesheet
 
 HTML or CSS does not support dynamic HTML content created using Javascript in a HTML document, as such content is typically used for interactive web pages while HTML or CSS is intended for use with static content.
 
@@ -116,9 +115,9 @@ My original assertion was that concatenating (or bundling) JavaScript and CSS as
 
 In order to assess the consequences of any such decision, it helps to understand how browsers work: When the browser processes an HTML document, it does so from top to bottom. Upon encountering a <script> tag, it halts (“blocks”) further processing[2] in order to download the referenced script file. Only after that download has completed and the respective JavaScript code has been processed, HTML processing continues.
 
-Let’s imagine the following document:
-
-
+Let’s see the following document:
+    
+```html
 <!DOCTYPE html>
 <html>
     <head>
@@ -126,61 +125,46 @@ Let’s imagine the following document:
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hello World</title>
         <link rel="stylesheet" href="main.css">
-        …
         <script src="foo.js"></script>
     </head>
-
     <body>
         <h1>Hello World</h1>
-
         <script src="bar.js"></script>
-
         <p>lorem ipsum dolor sit amet</p>
-
         <script src="baz.js"></script>
     </body>
-</html>
-
+</html> 
+```
 
     
 The browser might actually begin rendering the page even before it has fully downloaded the HTML file. Thus you might see the browser window reading “Hello World” (thanks to the <title> tag) while the page is still blank.
 
 Once we arrive at <script src="foo.js">, processing halts as described above. Afterwards, we continue to <script src="bar.js">, repeat the same procedure, and then move on to <script src="baz.js"> for the final piece. That leaves us with the following sequence:
+|-foo.js-|
+|-bar.js-|
+|-baz.js-|
 
-|
-| |-foo.js-|
-|          |-bar.js-|
-|                   |-baz.js-|
-|
-+------------------------------> t
++---------------------------------------------------------------------------------------------> 
 Concatenation would mean combining these files into a single one:
-
-|
-| |-foo-bar-baz.js-|
-|
-+------------------------------> t
+|-foo-bar-baz.js-|
++---------------------------------------------------------------------------------------------> 
 While the amount of content transferred remains identical[3], this is generally faster because there’s less networking overhead. (Obviously I’m simplifying a bit here.)
 
 As you might have guessed from this (poor man’s) visualization, there’s another approach. We could parallelize the retrieval of JavaScript files:
-
-|
-| |-foo.js-|
-| |-bar.js-|
-| |-baz.js-|
-|
-+------------------------------> t
+|-foo.js-|
+|-bar.js-|
+|-baz.js-|
++---------------------------------------------------------------------------------------------------> 
 Browsers these days support this with the simple addition of a dedicated attribute: <script defer> (implied by <script type="module">). In fact, there’s also another, similar attribute: async — except this one doesn’t guarantee order of execution; see Asynchronous vs Deferred JavaScript for details.[4] However, these attributes don’t work for inline scripts (of which, unfortunately, there were a few in the project at hand), so those would likely execute before the deferred external scripts they depend on become available.
 
 Now, you might argue that HTTP/2 makes all of this a non-issue because it reduces protocol overhead — but in fact, even HTTP/2 is still prone to the laws of physics:
 
 As described above, <script> tags are processed sequentially — which means that the browser doesn’t know it should retrieve bar.js until after foo.js has been fully loaded. Thus it actually has to wait before even requesting that file from the server:
 
-|
-| |-- → foo.js --|
-|                |-- ← foo.js --|
-|                               |-- → bar.js --|
-|                                              |-- ← bar.js --|
-|
+|-- → foo.js --|
+|-- ← foo.js --|
+|-- → bar.js --|
+|-- ← bar.js --|
 +---------------------------------------------------------------> t
 
 → request
@@ -188,13 +172,10 @@ As described above, <script> tags are processed sequentially — which means tha
 Depending on connectivity, that latency can be significant.
 
 However, if we were using defer, those <script> tags would be non-blocking, which means the browser could request both files simultaneously:
-
-|
-| |-- → foo.js --|
-|                |-- ← foo.js --|
-| |-- → bar.js --|
-|                |-- ← bar.js --|
-|
+|-- → foo.js --|
+|-- ← foo.js --|
+|-- → bar.js --|
+|-- ← bar.js --|
 +---------------------------------------------------------------> t
 
 → request
@@ -218,22 +199,23 @@ The CSSOM and DOM trees are combined into a render tree, which is then used to c
 
 In the previous section on constructing the object model, we built the DOM and the CSSOM trees based on the HTML and CSS input. However, both of these are independent objects that capture different aspects of the document: one describes the content, and the other describes the style rules that need to be applied to the document.
 
->> The DOM and CSSOM trees are combined to form the render tree.
->> Render tree contains only the nodes required to render the page.
->> Layout computes the exact position and size of each object.
->> The last step is paint, which takes in the final render tree and renders the pixels to the screen.
->> First, the browser combines the DOM and CSSOM into a "render tree," which captures all the visible DOM content on the page and all the CSSOM style information for each node.
+a) The DOM and CSSOM trees are combined to form the render tree.
+b) Render tree contains only the nodes required to render the page.
+c) Layout computes the exact position and size of each object.
+d) The last step is paint, which takes in the final render tree and renders the pixels to the screen.
+e) First, the browser combines the DOM and CSSOM into a "render tree," which captures all the visible DOM content on the page and all the CSSOM style information for each node.
 
 To construct the render tree, the browser roughly does the following:
 
->> Starting at the root of the DOM tree, traverse each visible node.
+f) Starting at the root of the DOM tree, traverse each visible node.
 
 1. Some nodes are not visible (for example, script tags, meta tags, and so on), and are omitted since they are not reflected in the rendered output.
 2. Some nodes are hidden via CSS and are also omitted from the render tree; for example, the span node in the example above is missing from the render tree because we have an explicit rule that sets the "display: none" property on it.
->> For each visible node, find the appropriate matching CSSOM rules and apply them.
->> Emit visible nodes with content and their computed styles.
+g) For each visible node, find the appropriate matching CSSOM rules and apply them.
+h) Emit visible nodes with content and their computed styles.
 
 eg.
+ ```html   
 <!DOCTYPE html>
 <html>
   <head>
@@ -246,7 +228,7 @@ eg.
     </div>
   </body>
 </html>
-
+```
 Here's a quick recap of the browser's steps:
 
 1. Process HTML markup and build the DOM tree.
@@ -255,6 +237,9 @@ Here's a quick recap of the browser's steps:
 4. Run layout on the render tree to compute geometry of each node.
 5. Paint the individual nodes to the screen.
 
+    ![o_200126140510render-tree-construction](https://user-images.githubusercontent.com/106540496/173443181-d5021387-b1c5-4233-94a1-31de8a139f2a.png)
+
+    
 
 G) Order of script processing
 ----------------------------------
@@ -270,6 +255,8 @@ Directly into the head of the page
 Directly into the body of the page
 From an event handler/listener
 It doesn't make any difference whether the JavaScript is within the web page itself or in external files linked to the page. It also doesn't matter whether the event handlers are hard-coded into the page or added by the JavaScript itself (except that they can't be triggered before they are added).
+
+![7d17f6f075147e46beb0d072c184fd14fd08acf2](https://user-images.githubusercontent.com/106540496/173442785-31352fc4-5084-4a48-b3f7-c6cf7b22a12d.png)
 
 
 
@@ -293,3 +280,6 @@ To give an example, the state of a web application may change, and that would le
 
 DOM/CSSOM → render tree → layout → painting
 However, browser painting is special in its own way, as it can happen even without any changes to the DOM and/or CSSOM.
+    
+
+    
