@@ -18,7 +18,6 @@ Browsers functionality can be classified into four major sections and these inc
 * The main functionality of the browser
 ----------------------------------------
 
-Refer The Image for Explanation :: Week-1/week_1_images/Browser_component_assignment1.jpg
 
 > The main task is to collect information from the Internet and make it accessible to users.
 > A web browser can be used to visit any website. When we type a URL into a browser, the web server redirects us to that website.
@@ -70,6 +69,10 @@ Steps for what happens when we enter a URL :
 It is important to note that browsers such as Chrome run multiple instances of the rendering engine: one for each tab. Each tab runs in a separate process.
 
 
+Refer The Image for Explanation :: Week-1/week_1_images/Browser_component_assignment1.jpg
+![Browser_component_assignment1](https://user-images.githubusercontent.com/106540496/173435562-7b9315cf-41d7-4df8-a8c1-ed1746496c6f.jpg)
+
+
 * Rendering engine and its use
 ------------------------------
 
@@ -82,6 +85,9 @@ The rendering engine will start getting the contents of the requested document f
 
 After that, this is the basic flow of the rendering engine:
 Refer The Image for Explanation :: Week-1/week_1_images/Rendering engine basic flow.jpg
+
+![Rendering engine basic flow](https://user-images.githubusercontent.com/106540496/173435604-86cd2129-4bed-447f-ba2d-315aff6f4ff7.jpg)
+
 
 * Parsers (HTML, CSS, etc)
 ---------------------------------
@@ -135,6 +141,7 @@ Let’s imagine the following document:
 </html>
 
 
+    
 The browser might actually begin rendering the page even before it has fully downloaded the HTML file. Thus you might see the browser window reading “Hello World” (thanks to the <title> tag) while the page is still blank.
 
 Once we arrive at <script src="foo.js">, processing halts as described above. Afterwards, we continue to <script src="bar.js">, repeat the same procedure, and then move on to <script src="baz.js"> for the final piece. That leaves us with the following sequence:
