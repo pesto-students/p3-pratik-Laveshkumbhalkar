@@ -15,7 +15,7 @@ Browsers functionality can be classified into four major sections and these inc
 > Display
 > Storage
 
-* The main functionality of the browser
+A) The main functionality of the browser
 ----------------------------------------
 
 
@@ -50,7 +50,7 @@ Steps for what happens when we enter a URL :
 8. Browser displays HTML content Finally, Done.
 
 
-* High Level Components of a browser
+B) High Level Components of a browser
 -------------------------------------
 
 > The user interface: this includes the address bar, back/forward button, bookmarking menu, etc. Every part of the browser display except the window where you see the requested page.
@@ -73,7 +73,7 @@ Refer The Image for Explanation :: Week-1/week_1_images/Browser_component_assign
 ![Browser_component_assignment1](https://user-images.githubusercontent.com/106540496/173435562-7b9315cf-41d7-4df8-a8c1-ed1746496c6f.jpg)
 
 
-* Rendering engine and its use
+C) Rendering engine and its use
 ------------------------------
 
 A rendering engine is software that draws text and images on the screen. The engine draws structured text from a document (often HTML), and formats it properly based on the given style declarations (often given in CSS). 
@@ -89,7 +89,7 @@ Refer The Image for Explanation :: Week-1/week_1_images/Rendering engine basic f
 ![Rendering engine basic flow](https://user-images.githubusercontent.com/106540496/173435604-86cd2129-4bed-447f-ba2d-315aff6f4ff7.jpg)
 
 
-* Parsers (HTML, CSS, etc)
+D) Parsers (HTML, CSS, etc)
 ---------------------------------
 
 HTML or CSS is a lightweight HTML/CSS parser written in C that allows applications to prepare a HTML document for rendering or conversion. HTM or CSS is extremely portable and only requires a C99 compiler like GCC, Clang, Visual C, etc. HTML or CSS is also extremely memory efficient, utilizing a shared string pool and smart CSS cache to minimize the size of a HTML document in memory.
@@ -105,7 +105,7 @@ Features include:
 
 HTML or CSS does not support dynamic HTML content created using Javascript in a HTML document, as such content is typically used for interactive web pages while HTML or CSS is intended for use with static content.
 
-* Script Processors
+E) Script Processors 
 -----------------------
 
 This is a rundown of how browsers process JavaScript references within HTML.
@@ -117,6 +117,7 @@ My original assertion was that concatenating (or bundling) JavaScript and CSS as
 In order to assess the consequences of any such decision, it helps to understand how browsers work: When the browser processes an HTML document, it does so from top to bottom. Upon encountering a <script> tag, it halts (“blocks”) further processing[2] in order to download the referenced script file. Only after that download has completed and the respective JavaScript code has been processed, HTML processing continues.
 
 Let’s imagine the following document:
+
 
 <!DOCTYPE html>
 <html>
@@ -210,7 +211,85 @@ This is why concatenation can actually be a net negative with HTTP/2, as it prev
 ← response
 Network protocols aside, it’s generally good practice to relegate script tags to the bottom in order to avoid unnecessarily blocking static HTML content. In the example above, even if the entire HTML document has already been downloaded, if foo.js and/or bar.js are slow to load (for which there are myriad potential reasons), they’d prevent the content below from being displayed.
 
+F) Tree construction
+------------------------------
+
+The CSSOM and DOM trees are combined into a render tree, which is then used to compute the layout of each visible element and serves as an input to the paint process that renders the pixels to screen. Optimizing each of these steps is critical to achieving optimal rendering performance.
+
+In the previous section on constructing the object model, we built the DOM and the CSSOM trees based on the HTML and CSS input. However, both of these are independent objects that capture different aspects of the document: one describes the content, and the other describes the style rules that need to be applied to the document.
+
+>> The DOM and CSSOM trees are combined to form the render tree.
+>> Render tree contains only the nodes required to render the page.
+>> Layout computes the exact position and size of each object.
+>> The last step is paint, which takes in the final render tree and renders the pixels to the screen.
+>> First, the browser combines the DOM and CSSOM into a "render tree," which captures all the visible DOM content on the page and all the CSSOM style information for each node.
+
+To construct the render tree, the browser roughly does the following:
+
+>> Starting at the root of the DOM tree, traverse each visible node.
+
+1. Some nodes are not visible (for example, script tags, meta tags, and so on), and are omitted since they are not reflected in the rendered output.
+2. Some nodes are hidden via CSS and are also omitted from the render tree; for example, the span node in the example above is missing from the render tree because we have an explicit rule that sets the "display: none" property on it.
+>> For each visible node, find the appropriate matching CSSOM rules and apply them.
+>> Emit visible nodes with content and their computed styles.
+
+eg.
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Critial Path: Hello world!</title>
+  </head>
+  <body>
+    <div style="width: 50%">
+      <div style="width: 50%">Hello world!</div>
+    </div>
+  </body>
+</html>
+
+Here's a quick recap of the browser's steps:
+
+1. Process HTML markup and build the DOM tree.
+2. Process CSS markup and build the CSSOM tree.
+3. Combine the DOM and CSSOM into a render tree.
+4. Run layout on the render tree to compute geometry of each node.
+5. Paint the individual nodes to the screen.
+
+
+G) Order of script processing
+----------------------------------
+
+Designing your web page using JavaScript requires attention to the order in which your code appears and whether you are encapsulating code into functions or objects, all of which impact the order in which the code runs. 
+
+The Location of JavaScript on Your Web Page
+Since the JavaScript on your page executes based on certain factors, let's consider where and how to add JavaScript to a web page. 
+
+There are basically three locations into which we can attach JavaScript:
+
+Directly into the head of the page
+Directly into the body of the page
+From an event handler/listener
+It doesn't make any difference whether the JavaScript is within the web page itself or in external files linked to the page. It also doesn't matter whether the event handlers are hard-coded into the page or added by the JavaScript itself (except that they can't be triggered before they are added).
 
 
 
+H) Layout and Painting
+----------------------------
 
+The process of a web browser turning HTML, CSS, and JavaScript into a finished visual representation is quite complex and involves a good bit of magic. Here’s a simplified set of steps the browser goes through:
+
+Browser creates the DOM and CSSOM.
+Browser creates the render tree, where the DOM and styles from the CSSOM are taken into account (display: none elements are avoided).
+Browser computes the geometry of the layout and its elements based on the render tree.
+Browser paints pixel by pixel to create the visual representation we see on the screen.
+In this article, I’d like to focus on the last part: painting.
+
+
+All of those steps combined is a lot of work for a browser to do on load… and actually, not just on load, but any time the DOM (or CSSOM) is changed. That’s why many web developers tend to partially solve this by using some sort of frontend framework, such as React which, apart from many other advantages, can help to highly optimize changes in the DOM to avoid unnecessary recalculating or rendering.
+
+You may have heard terms such as state, component rendering, or immutability. All of those have something to do with the optimization of DOM changes, or in other words, to only make changes to the DOM when it’s necessary.
+
+To give an example, the state of a web application may change, and that would lead to a change in UI. However, certain (or many) components are not affected by this change. What React helps to do is limit the writing to the DOM for elements that are actually affected by a change in state and ultimately limit the rendering to the smallest part of the web application possible:
+
+DOM/CSSOM → render tree → layout → painting
+However, browser painting is special in its own way, as it can happen even without any changes to the DOM and/or CSSOM.
