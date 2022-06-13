@@ -1,1 +1,50 @@
 
+
+Assignment 1
+---------------
+
+
+The web browser is at the heart of how we experience the internet. Every day, millions visit websites via browsers. Five major browsers — Chrome, Firefox, Internet Explorer, Safari and Opera — account 95% of web traffic.
+
+A major role of a web browser is to accept a web URL via an address bar, fetch resources, and display them on the screen.
+
+Browsers functionality can be classified into four major sections and these include:
+
+> Fetch
+> Process
+> Display
+> Storage
+
+* The main functionality of the browser
+
+> The main task is to collect information from the Internet and make it accessible to users.
+> A web browser can be used to visit any website. When we type a URL into a browser, the web server redirects us to that website.
+> It simplifies Internet surfing because once we arrive at a website, we can quickly check the hyperlinks and access a wealth of information.
+> Internal cache is used by browsers and is saved so that the user can open the same webpage multiple times without losing any data.
+> A web browser can open multiple web pages at the same time. Back, forward, reload, stop reload, home, and other options are available on these web browsers, making them simple and convenient to use.
+
+* What happens when we type a URL:
+
+URL stands for Uniform Resource Locator. URL is the address of the website which you can find in the address bar of your web browser. It is a reference to a resource on the internet, be it images, hypertext pages, audio/video files, etc.
+
+for example: https://laveshkumbhalkar.com/ 
+
+DNS is short for Domain Name System. Like a phonebook, DNS maintains and maps the name of the website, i.e. URL, and particular IP address it links to. Every URL on the internet has a unique IP address which is of the computer which hosts the server of the website requested.
+
+Steps for what happens when we enter a URL :
+
+1. Browser checks cache for DNS entry to find the corresponding IP address of website.
+    It looks for following cache. If not found in one, then continues checking to the next until found.
+    > Browser Cache
+    > Operating Systems Cache
+    > Router Cache
+
+2.  If not found in cache, ISP’s (Internet Service Provider) DNS server initiates a DNS query to find IP address of     server that hosts the domain name.
+3. The requests are sent using small data packets that contain information content of request and IP address it is destined for.
+4. Browser initiates a TCP (Transfer Control Protocol) connection with the server using synchronize(SYN) and acknowledge(ACK) messages.
+5. Browser sends an HTTP request to the web server. GET or POST request.
+6. Server on the host computer handles that request and sends back a response. It assembles a response in some format like JSON, XML and HTML.
+7. Server sends out an HTTP response along with the status of response.
+8. Browser displays HTML content Finally, Done.
+
+
