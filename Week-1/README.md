@@ -203,15 +203,6 @@ This is why concatenation can actually be a net negative with HTTP/2, as it prev
 ← response
 Network protocols aside, it’s generally good practice to relegate script tags to the bottom in order to avoid unnecessarily blocking static HTML content. In the example above, even if the entire HTML document has already been downloaded, if foo.js and/or bar.js are slow to load (for which there are myriad potential reasons), they’d prevent the content below from being displayed.
 
-i.e. instead of serving source files individually, combining them into a single file for distribution  ↩
-
-for somewhat arcane historical reasons related to document.write  ↩
-
-minification, by contrast, reduces the amount of content (e.g. by removing whitespace that's only relevant for us puny humans)  ↩
-
-noted performance pioneer Steve Souders makes the case for preferring defer over async  
-
-
 
 
 
