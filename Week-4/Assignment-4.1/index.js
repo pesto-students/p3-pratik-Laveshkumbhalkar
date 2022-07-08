@@ -25,4 +25,4 @@ getNumber
   .catch((error) => {
     console.log(error); // Promise3 rejected
   });
-
+  
