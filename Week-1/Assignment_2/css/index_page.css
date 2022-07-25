@@ -1,0 +1,163 @@
+
+* {
+    font-family: 'Lato';
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.music_player {
+    background-color: #666;
+    padding: 80px;
+    font-size: 35px;
+    color: white;
+}
+
+.sidenav {
+    height: 100%;
+    width: 30px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-y: hidden;
+    padding-top: 17px;
+    padding-right: 16px;
+}
+
+.sidenav a {
+    padding: 87% 7px 7px 12px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+}
+
+.sidenav a,
+i {
+    color: white;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    font-size: 28px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+.flex-container {
+    display: flex;
+    align-items: stretch;
+}
+
+.flex-container>div {
+    color: white;
+    text-align: left;
+    line-height: 43px;
+}
+
+.text-size {
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.line-height {
+    line-height: 118%;
+}
+
+.play_button {
+    padding-right: 10px;
+}
+
+.function-text-bottom {
+    height: 150px;
+    display: flex;
+    /* defines flexbox */
+    align-items: flex-end;
+    /* bottom of the box */
+}
+
+.music_list {
+    margin-left: 49px;
+    height: 500px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-weight: lighter;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.list_button {
+    color: blue;
+}
+
+.music_footer {
+    background-color: rgb(80, 99, 158);
+    padding: 76px;
+    font-size: 35px;
+    color: white;
+    z-index: 1;
+}
+
+.flex-containers {
+    display: flex;
+    align-items: stretch;
+    height: 100px;
+}
+
+.flex-containers>div {
+    color: white;
+    text-align: left;
+    line-height: 43px;
+    height: 155px;
+    width: 50%;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+.text-align {
+    margin-top: 20px;
+}
+
+.footer-function-text-bottom {
+    height: 80px;
+    display: flex;
+    /* defines flexbox */
+    align-items: flex-end;
+    /* bottom of the box */
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
